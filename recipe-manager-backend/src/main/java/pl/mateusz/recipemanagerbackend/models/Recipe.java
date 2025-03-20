@@ -1,12 +1,14 @@
 package pl.mateusz.recipemanagerbackend.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import pl.mateusz.recipemanagerbackend.enums.DifficultyLevel;
 import pl.mateusz.recipemanagerbackend.enums.RecipeTag;
 
 import java.util.Set;
 
 @Entity
+@Getter
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
