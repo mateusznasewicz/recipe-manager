@@ -1,11 +1,9 @@
-package pl.mateusz.recipemanagerbackend.controllers;
+package pl.mateusz.recipemanagerbackend.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.mateusz.recipemanagerbackend.models.Recipe;
-import pl.mateusz.recipemanagerbackend.services.RecipeService;
-
-import java.util.Optional;
+import pl.mateusz.recipemanagerbackend.model.Recipe;
+import pl.mateusz.recipemanagerbackend.service.RecipeService;
 
 @RestController("/recipe")
 public class RecipeController{
@@ -22,19 +20,16 @@ public class RecipeController{
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Recipe> deleteRecipe(@PathVariable Long id) {
-        Optional<Recipe> recipe = recipeService.delete(id);
-        return recipe.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.ok(recipeService.delete(id));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getRecipe(@PathVariable Long id) {
-        Optional<Recipe> recipe = recipeService.findById(id);
-        return recipe.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.ok(recipeService.findById(id));
     }
 
     @PutMapping
     public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe) {
-        Optional<Recipe> r = recipeService.update(recipe);
-        return r.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.ok(recipeService.save(recipe));
     }
 }

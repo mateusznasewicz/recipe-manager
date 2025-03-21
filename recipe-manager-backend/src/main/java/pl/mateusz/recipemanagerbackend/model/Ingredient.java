@@ -1,4 +1,4 @@
-package pl.mateusz.recipemanagerbackend.models;
+package pl.mateusz.recipemanagerbackend.model;
 
 import jakarta.persistence.*;
 import pl.mateusz.recipemanagerbackend.enums.MeasurementUnit;
