@@ -1,0 +1,48 @@
+CREATE DATABASE RECIPE_MANAGER OWNER mateusz;
+
+CREATE TABLE difficulty_level (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE;
+);
+
+CREATE TABLE tag (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE;
+);
+
+CREATE TABLE measurement_unit (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE;
+);
+
+CREATE TABLE ingredient (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL UNIQUE,
+);
+`
+CREATE TABLE recipe (
+	id SERIAL PRIMARY KEY,
+);
+
+CREATE TABLE recipe_ingredient (
+	id SERIAL PRIMARY KEY,
+);
+
+CREATE TABLE recipe_tag (
+	id SERIAL PRIMARY KEY,
+);
+
+CREATE TABLE user (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(100) NOT NULL UNIQUE,
+);
+
+CREATE TABLE rating (
+	id SERIAL PRIMARY KEY,
+	user_id INT REFERENCE user(id) on DELETE CASCADE
+	recipe_id INT REFERENCE recipe(id) on DELETE CASCADE
+	score score NUMERIC(3, 1) NOT NULL CHECK (
+        	score >= 0 AND score <= 10 AND
+        	(score * 2) % 1 = 0
+    	)
+);
