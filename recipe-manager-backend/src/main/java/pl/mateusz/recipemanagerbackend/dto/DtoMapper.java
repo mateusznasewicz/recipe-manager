@@ -16,8 +16,8 @@ public class DtoMapper {
                 .instructions(recipe.getInstructions())
                 .preparationTime(recipe.getPreparationTime())
                 .difficultyLevel(recipe.getDifficultyLevel())
-                .tags(recipe.getTags().stream().map(DtoMapper::toDto).collect(Collectors.toSet()))
-                .ratings(recipe.getRatings().stream().map(DtoMapper::toDto).collect(Collectors.toSet()))
+                .tags(recipe.getTags())
+                .ratings(recipe.getRatings().stream().map(DtoMapper::toDto).collect(Collectors.toList()))
                 .build();
     }
 
@@ -28,13 +28,6 @@ public class DtoMapper {
                 .recipeName(rating.getRecipe().getTitle())
                 .comment(rating.getComment())
                 .score(rating.getScore())
-                .build();
-    }
-
-    public static TagDTO toDto(Tag tags) {
-        return TagDTO.builder()
-                .id(tags.getId())
-                .label(tags.getLabel())
                 .build();
     }
 

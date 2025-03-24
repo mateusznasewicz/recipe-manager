@@ -6,9 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.Set;
-
 @Entity
 @Builder
 @Data
@@ -22,7 +19,4 @@ public class Tag {
 
     @Column(nullable = false)
     private String label;
-
-    @ManyToMany(mappedBy = "tags")
-    private List<Recipe> recipes;
 }
