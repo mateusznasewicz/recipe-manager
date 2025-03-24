@@ -6,24 +6,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
-@Data
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ingredient {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String title;
+    private String label;
 
-    @Column(nullable = false)
-    private double amount;
-
-    @ManyToOne
-    @JoinColumn(name = "unit_id", nullable = false)
-    private MeasurementUnit measurementUnit;
+    @ManyToMany(mappedBy = "tags")
+    private List<Recipe> recipes;
 }

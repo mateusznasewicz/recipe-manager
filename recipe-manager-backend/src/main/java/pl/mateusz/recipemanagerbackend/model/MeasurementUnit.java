@@ -11,19 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ingredient {
+public class MeasurementUnit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false)
-    private double amount;
-
-    @ManyToOne
-    @JoinColumn(name = "unit_id", nullable = false)
-    private MeasurementUnit measurementUnit;
+    private String label;
 }

@@ -1,14 +1,16 @@
 package pl.mateusz.recipemanagerbackend.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import pl.mateusz.recipemanagerbackend.enums.DifficultyLevel;
-import pl.mateusz.recipemanagerbackend.enums.RecipeTag;
+import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Getter
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +33,18 @@ public class Recipe {
     @Column(nullable = false)
     private int preparationTime;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "difficulty_id", nullable = false)
     private DifficultyLevel difficultyLevel;
 
-    @Enumerated(EnumType.STRING)
-    @ElementCollection
-    private Set<RecipeTag> tags;
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_tag",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags;
+
+    @OneToMany(mappedBy = "recipe")
+    private List<Rating> ratings;
 }
