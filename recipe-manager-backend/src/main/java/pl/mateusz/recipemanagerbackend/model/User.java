@@ -1,11 +1,9 @@
 package pl.mateusz.recipemanagerbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
@@ -22,6 +20,8 @@ public class User {
     private String pass;
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
     private List<Rating> ratings;
+
+    @OneToMany(mappedBy = "author")
+    private List<Recipe> authorOf;
 }

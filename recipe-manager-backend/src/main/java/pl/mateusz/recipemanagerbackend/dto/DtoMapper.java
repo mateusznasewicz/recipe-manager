@@ -2,7 +2,6 @@ package pl.mateusz.recipemanagerbackend.dto;
 
 import pl.mateusz.recipemanagerbackend.model.Rating;
 import pl.mateusz.recipemanagerbackend.model.Recipe;
-import pl.mateusz.recipemanagerbackend.model.Tag;
 import pl.mateusz.recipemanagerbackend.model.User;
 
 import java.util.stream.Collectors;
@@ -12,6 +11,7 @@ public class DtoMapper {
         return RecipeDTO.builder()
                 .id(recipe.getId())
                 .title(recipe.getTitle())
+                .author(recipe.getAuthor().getUsername())
                 .ingredients(recipe.getIngredients())
                 .instructions(recipe.getInstructions())
                 .preparationTime(recipe.getPreparationTime())
@@ -34,7 +34,8 @@ public class DtoMapper {
     public static UserDTO toDto(User user) {
         return UserDTO.builder()
                 .username(user.getUsername())
-                .ratings(user.getRatings().stream().map(DtoMapper::toDto).collect(Collectors.toSet()))
+                .ratings(user.getRatings().stream().map(DtoMapper::toDto).collect(Collectors.toList()))
+                .authorOf(user.getAuthorOf().stream().map(DtoMapper::toDto).collect(Collectors.toList()))
                 .build();
     }
 }

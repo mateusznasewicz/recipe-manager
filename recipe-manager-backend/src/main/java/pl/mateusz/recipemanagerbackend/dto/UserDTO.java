@@ -3,11 +3,12 @@ package pl.mateusz.recipemanagerbackend.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
 public class UserDTO {
     private String username;
-    private Set<RatingDTO> ratings;
+    private List<RatingDTO> ratings;
+    private List<RecipeDTO> authorOf;
 }

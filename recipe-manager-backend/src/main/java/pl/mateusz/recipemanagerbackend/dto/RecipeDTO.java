@@ -12,6 +12,7 @@ import java.util.List;
 public class RecipeDTO{
     private Long id;
     private String title;
+    private String author;
     private List<Ingredient> ingredients;
     private String instructions;
     private int preparationTime;

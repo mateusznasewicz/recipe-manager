@@ -17,7 +17,13 @@ CREATE TABLE ingredient (
 	id SERIAL PRIMARY KEY,
 	title VARCHAR(100) NOT NULL,
 	unit_id INT NOT NULL REFERENCES measurement_unit(id) on DELETE CASCADE,
-	amount NUMERIC(3, 1) NOT NULL
+	amount NUMERIC(5, 1) NOT NULL
+);
+
+CREATE TABLE app_user (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(100) NOT NULL UNIQUE,
+	pass VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE recipe (
@@ -25,6 +31,7 @@ CREATE TABLE recipe (
 	title VARCHAR(100) NOT NULL,
 	instructions TEXT NOT NULL,
 	preparation_time INT NOT NULL,
+	author_id INT NOT NULL REFERENCES app_user(id) on DELETE CASCADE,
 	difficulty_id INT NOT NULL REFERENCES difficulty_level(id) on DELETE CASCADE
 );
 
@@ -38,12 +45,6 @@ CREATE TABLE recipe_tag (
 	id SERIAL PRIMARY KEY,
 	recipe_id INT NOT NULL REFERENCES recipe(id) on DELETE CASCADE,
 	tag_id INT NOT NULL REFERENCES tag(id) on DELETE CASCADE
-);
-
-CREATE TABLE app_user (
-	id SERIAL PRIMARY KEY,
-	username VARCHAR(100) NOT NULL UNIQUE,
-	pass VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE rating (
