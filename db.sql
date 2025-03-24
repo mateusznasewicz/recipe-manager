@@ -1,5 +1,3 @@
-\c recipe_manager
-
 CREATE TABLE difficulty_level (
 	id SERIAL PRIMARY KEY,
 	label VARCHAR(50) NOT NULL UNIQUE
