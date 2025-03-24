@@ -25,7 +25,7 @@ CREATE TABLE recipe (
 	title VARCHAR(100) NOT NULL,
 	instructions TEXT,
 	preparation_time INT,
-	diff_level INT REFERENCES difficulty_level(id) on DELETE CASCADE
+	difficulty_id INT REFERENCES difficulty_level(id) on DELETE CASCADE
 );
 
 CREATE TABLE recipe_ingredient (
