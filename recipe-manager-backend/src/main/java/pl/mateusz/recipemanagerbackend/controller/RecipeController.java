@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 
 @RestController
-@RequestMapping("/recipe")
+@RequestMapping("/recipes")
 public class RecipeController{
     private final RecipeService recipeService;
     private final Logger logger = Logger.getLogger(RecipeController.class.getName());

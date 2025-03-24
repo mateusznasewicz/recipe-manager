@@ -10,7 +10,7 @@ import pl.mateusz.recipemanagerbackend.model.User;
 import pl.mateusz.recipemanagerbackend.service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
