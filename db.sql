@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS recipe_manager;
-CREATE DATABASE recipe_manager OWNER mateusz;
 \c recipe_manager
 
 CREATE TABLE difficulty_level (
